@@ -122,7 +122,6 @@ Create `app/globals.css` (or `src/styles/globals.css`) with the rules below. Imp
 :root {
   --font-heading: var(--font-ibm-plex-sans);
   --font-body: var(--font-source-sans-3);
-  --heading-font-family: var(--font-ibm-plex-sans), system-ui, sans-serif;
 
   --color-primary: #1C2024;
   --color-secondary: #60646C;
@@ -130,6 +129,17 @@ Create `app/globals.css` (or `src/styles/globals.css`) with the rules below. Imp
   /* Brand gradient — adjust per project */
   --brand-gradient: linear-gradient(to right, #3300FC, #95008A, #3C5CDD);
   --brand-gradient-hover: linear-gradient(to right, #2800e0, #7e0075, #3050c8);
+}
+
+/* ─── Radix font token overrides ─────────────────────────────────────────── */
+
+/* IMPORTANT: Radix sets --default-font-family and --heading-font-family on
+   .radix-themes, not :root. Overriding at :root level is silently ignored
+   because .radix-themes has higher specificity. Always override on
+   .radix-themes to ensure the custom fonts are actually applied. */
+.radix-themes {
+  --default-font-family: var(--font-source-sans-3), system-ui, sans-serif;
+  --heading-font-family: var(--font-ibm-plex-sans), system-ui, sans-serif;
 }
 
 /* ─── Typography ─────────────────────────────────────────────────────────── */
@@ -144,6 +154,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-heading), system-ui, sans-serif;
 }
 
+/* H1/H2/H3 — semi-bold (600). Confirmed correct for this design system. */
 h1, h2, h3,
 h1.rt-Heading, h2.rt-Heading, h3.rt-Heading {
   font-weight: 600;
